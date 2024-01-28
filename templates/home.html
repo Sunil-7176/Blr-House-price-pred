@@ -1,0 +1,141 @@
+<html>
+<body>
+    <div class="login">
+       <h1>Bengaluru House Price Prediction</h1>
+   
+       <form action="{{ url_for('predict_datapoint')}}" method="post">
+        <h1>
+            <legend>Bengaluru House Price Prediction</legend>
+        </h1>
+        <div class="mb-3">
+            <label class="form-label">locality</label>
+            <select class="form-control" name="locality" placeholder="Enter you locality" required>
+                <option class="placeholder" selected disabled value="">Select your locality</option>
+                <option value="BTM Layout">
+                    BTM Layout
+                </option>
+                <option value="Attibele">
+                    Attibele
+                </option>
+                <option value="K R Puram ">
+                    K R Puram 
+                </option>
+                <option value="Marathahalli">
+                    Marathahalli
+                </option>
+                <option value="Indiranagar">
+                    Indiranagar
+                </option>
+                <option value="Electronic City">
+                    Electronic City
+                </option>
+                <option value="Yalahanka">
+                    Yalahanka
+                </option>
+                <option value="Malleshwaram">
+                    Malleshwaram
+                </option>
+                <option value="Jayanagar">
+                    Jayanagar
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">facing</label>
+            <select class="form-control" name="facing" placeholder="Enter your facing" required>
+                <option class="placeholder" selected disabled value="">Select facing</option>
+                <option value="North-West">
+                    North-West
+                </option>
+                <option value="East">
+                    East
+                </option>
+                <option value="North">
+                    North
+                </option>
+                <option value="West">
+                    West
+                </option>
+                <option value="North-East">
+                    North-East
+                </option>
+                <option value="South-East">
+                    South-East
+                </option>
+                <option value="South">
+                    South
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">parking</label>
+            <select class="form-control" name="parking"
+                placeholder="Enter you parking" required>
+                <option class="placeholder" selected disabled value="">Select parking</option>
+                <option value="Bike">
+                    Bike
+                </option>
+                <option value="Bike and Car">
+                    Bike and Car
+                </option>
+                <option value="Car">
+                    Car
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">BHK</label>
+            <select class="form-control" name="BHK" placeholder="Enter BHK" required>
+                <option class="placeholder" selected disabled value="">Select BHK</option>
+                <option value="1">
+                    1
+                </option>
+                <option value="2">
+                    2
+                </option>
+                <option value="3">
+                    3
+                </option>
+                <option value="4">
+                    4
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">bathrooms</label>
+            <select class="form-control" name="bathrooms" placeholder="Enter bathrooms"
+                required>
+                <option class="placeholder" selected disabled value="">Select bathrooms</option>
+                <option value="1">
+                    1
+                </option>
+                <option value="2">
+                    2
+                </option>
+                <option value="3">
+                    3
+                </option>
+                <option value="4">
+                    4
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Area</label>
+            <input class="form-control" type="number" name="area"
+                placeholder="Enter your area" min='0' max='100000' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">price_per_sqft</label>
+            <input class="form-control" type="number" name="price_per_sqft"
+                placeholder="Enter your price_per_sqft" min='0' max='10000' />
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Predict your Rent" required />
+        </div>
+    </form>
+    <h2>
+       THE  prediction is {{results}}
+    </h2>
+   <body>
+</html>

@@ -7,6 +7,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler, OrdinalEncoder
+from scipy.stats import zscore
 
 from src.exception import CustomException
 from src.logger import logging
@@ -47,6 +48,12 @@ class DataTransformation:
         # Retain only numerical values in 'BHK' columns
         df['BHK'] = df['BHK'].apply(lambda x: int(x.split(' ')[0].replace('+', '')))
 
+        z_scores = zscore(df['bathrooms'])
+        threshold = 3
+
+    # Replace outliers with the median value
+        df['bathrooms'] = np.where(np.abs(z_scores) > threshold, df['bathrooms'].median(), df['bathrooms'])
+
         # Change 'Don't Know' entries in 'facing' column to NaN
         df['facing'] = df['facing'].apply(lambda x: x if x != "Don't Know" else np.nan)
 
@@ -63,6 +70,7 @@ class DataTransformation:
 
             ordinal_pipeline = Pipeline(steps=[
                 ('imputer', SimpleImputer(strategy='median')),
+                ('ordinalenc',OrdinalEncoder())
                 ('scaler', StandardScaler())
             ])
 
